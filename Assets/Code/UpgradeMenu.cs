@@ -51,7 +51,7 @@ namespace Assets.Code.Menus
 						}	
 					}
 					Base.dollar = Base.dollar + 45;
-						
+					cell.layer = 8;
 					cell.GetComponent<Renderer>().material.color = Color.gray;
 					cell.tag = "Cube";
 					GameObject[] cubes = GameObject.FindGameObjectsWithTag("Disabled");

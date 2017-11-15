@@ -37,19 +37,15 @@ public class Bullet : MonoBehaviour
 			bulletPos = bulletPos + Vector3.Normalize(dir) * 0.5f;
 			//_enemy.transform.position = pos;
 			transform.position = bulletPos;
-
 		}
 		else
 		{
 			//_enemy.SetActive(false);
 			gameObject.SetActive(false);
-
-
 			if (near.GetHealth() > 0)
 			{
 				near.SetHealth(50);
 			}
-		
 			if (near.GetHealth() <= 0)
 			{
 				if (near.gameObject.activeSelf)
@@ -57,11 +53,7 @@ public class Bullet : MonoBehaviour
 					Base.dollar += 50;
 					near.gameObject.SetActive(false);
 				}
-				
-				
 			}
-			
-			
 			//Debug.Log(Base.hit);
 			//_Base.GetComponent<Base>().hit = _Base.GetComponent<Base>().hit - 10;
 			//Debug.Log(_Base.GetComponent<Base>().hit);

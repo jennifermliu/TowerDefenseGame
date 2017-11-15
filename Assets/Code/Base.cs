@@ -29,7 +29,7 @@ public class Base : MonoBehaviour {
 		//Debug.Log(Meter.value);
 
 		Text = GameObject.FindGameObjectWithTag("Money");
-		dollar = 50;
+		dollar = 150;
 		Text.GetComponent<Text>().text = "$ " + dollar;
 	}
 	
