@@ -5,9 +5,12 @@ using UnityEngine.Networking;
 
 public class EnemyManager : MonoBehaviour
 {
-	private const float SpawnTime = 1f;
+	private const float SpawnTime = 0.8f;
+	//private const float WaveTime = 10f;
 	private float LastSpawn;
 	private static Object _enemyPrefab;
+
+	private float TargetTime = 15.0f;
 	// Use this for initialization
 	void Start ()
 	{
@@ -17,9 +20,22 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if ((Time.time - LastSpawn) < SpawnTime) return;
-		LastSpawn = Time.time;
-		Spawn();
+		TargetTime -= Time.deltaTime;
+		if (TargetTime <= 0.0f)
+		{
+			if (Time.time - LastSpawn > 10f)
+			{
+				TargetTime = 15f;
+			}
+
+		}
+		else
+		{
+			if ((Time.time - LastSpawn) < SpawnTime) return;
+			LastSpawn = Time.time;
+			Spawn();
+		}
+
 	}
 
 	private void Spawn()

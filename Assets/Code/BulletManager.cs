@@ -17,7 +17,7 @@ public class BulletManager : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void Update ()
 	{
 		if ((Time.time - LastSpawn) < SpawnTime) return;
 		LastSpawn = Time.time;
