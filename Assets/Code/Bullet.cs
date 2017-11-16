@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
 	private Vector3 enemyPos;
 	public Enemy near;
-	private bool updated = false;
+	//private bool updated = false;
 	
 	
 	// Use this for initialization

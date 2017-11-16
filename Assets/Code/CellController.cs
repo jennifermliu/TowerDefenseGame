@@ -39,7 +39,7 @@ public class CellController : MonoBehaviour
 			
 			
 		}
-	    else if (!CompareTag("Unclickable") && !CompareTag("Disabled") ){
+	    else if (!CompareTag("EnemyBase") && !CompareTag("HomeBase") && !CompareTag("Disabled") ){
 		    gameObject.GetComponent<Renderer>().material.color = Color.red;
 		    tag = "Clicked";
 		    GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
