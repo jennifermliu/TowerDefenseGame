@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class towerBuild : MonoBehaviour {
 
-	public static Enemy nearest;
+	public Enemy nearest;
 	// Use this for initialization
 	void Start () {
 		GetComponent<Renderer>().material.color = Color.yellow;

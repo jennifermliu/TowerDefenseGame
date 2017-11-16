@@ -32,7 +32,10 @@ public class BulletManager : MonoBehaviour
 		foreach (towerBuild tower in towers)
 		{
 			Vector3 bulletPos = new Vector3(tower.transform.position.x,tower.transform.position.y + 2,tower.transform.position.z);
-			var newBullet = (GameObject) Instantiate(_bullet,bulletPos,Quaternion.identity);
+			GameObject newBullet = (GameObject)Instantiate(_bullet,bulletPos,Quaternion.identity);
+			Bullet newb = newBullet.GetComponent<Bullet>();
+			newb.near = tower.nearest;
+			
 		}
 		
 	}

@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Bullet : MonoBehaviour
 {
 	private Vector3 enemyPos;
-	private Enemy near;
+	public Enemy near;
 	private bool updated = false;
+	
 	
 	// Use this for initialization
 	void Start () {	
@@ -18,7 +20,7 @@ public class Bullet : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-		
+		/*
 		if (towerBuild.nearest == null)
 		{
 			return;
@@ -28,6 +30,7 @@ public class Bullet : MonoBehaviour
 			near = towerBuild.nearest;
 			updated = true;
 		}
+		*/
 		enemyPos = near.transform.position;
 		Vector3 bulletPos = transform.position;
 		Vector3 dir = enemyPos  - bulletPos; 
