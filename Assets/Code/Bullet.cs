@@ -1,7 +1,6 @@
 ﻿using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -32,10 +31,6 @@ public class Bullet : MonoBehaviour
 			updated = true;
 		}
 		*/
-		if (near == null)
-		{
-			return;
-		}	
 		enemyPos = near.transform.position;
 		Vector3 bulletPos = transform.position;
 		Vector3 dir = enemyPos  - bulletPos; 
@@ -58,9 +53,21 @@ public class Bullet : MonoBehaviour
 			{
 				if (near.gameObject.activeSelf)
 				{
-					Base.dollar += 50;
+					if (near.GetComponent<Renderer>().material.color == Color.blue)
+					{
+						Base.dollar += 50;
+					}	
+					else if (near.GetComponent<Renderer>().material.color == Color.cyan)
+					{
+						Base.dollar += 100;
+					}
+					else if (near.GetComponent<Renderer>().material.color == Color.green)
+					{
+						Base.dollar += 150;
+					}
 					near.gameObject.SetActive(false);
 				}
+				
 			}
 			//Debug.Log(Base.hit);
 			//_Base.GetComponent<Base>().hit = _Base.GetComponent<Base>().hit - 10;
@@ -72,6 +79,5 @@ public class Bullet : MonoBehaviour
 	{
 		Destroy(gameObject);
 	}
-
 
 }

@@ -31,12 +31,17 @@ public class BulletManager : MonoBehaviour
 		towerBuild[] towers = FindObjectsOfType<towerBuild>();
 		foreach (towerBuild tower in towers)
 		{
-			Vector3 bulletPos = new Vector3(tower.transform.position.x,tower.transform.position.y + 2,tower.transform.position.z);
-			GameObject newBullet = (GameObject)Instantiate(_bullet,bulletPos,Quaternion.identity);
-			Bullet newb = newBullet.GetComponent<Bullet>();
-			newb.near = tower.nearest;
-			
+			if (tower.nearest != null && tower.nearest.gameObject.activeSelf)
+			{
+				Vector3 bulletPos = new Vector3(tower.transform.position.x,tower.transform.position.y + 2,tower.transform.position.z);
+				GameObject newBullet = (GameObject)Instantiate(_bullet,bulletPos,Quaternion.identity);
+				Bullet newb = newBullet.GetComponent<Bullet>();
+				newb.near = tower.nearest;
+			}
+		
 		}
 		
 	}
 }
+
+

@@ -18,8 +18,7 @@ public class Enemy : MonoBehaviour
 	public int GetHealth()
 	{
 		return enemyHealth;
-	}
-
+	} 
 	public void SetHealth(int val)
 	{
 		enemyHealth = enemyHealth - val;
@@ -29,8 +28,8 @@ public class Enemy : MonoBehaviour
 	void Start () {		
 		//_enemy = (GameObject) Instantiate(ENEMY);
 		//_enemy.GetComponent<Renderer> ().material.color = Color.blue;
-		GetComponent<Renderer> ().material.color = Color.blue;
-		enemyHealth = 100;
+		//GetComponent<Renderer> ().material.color = Color.blue;
+		//enemyHealth = 100;
 		//pos = _enemy.transform.position;
 		pos = transform.position;
 		//Debug.Log(pos);
@@ -74,7 +73,7 @@ public class Enemy : MonoBehaviour
 		}
 		Vector3 dir = calculateDirection(pos, Basepos, towers);
 		//Debug.Log(dir);
-		pos = pos + Vector3.Normalize(dir) * 0.15f;
+		pos = pos + Vector3.Normalize(dir) * 0.1f;
 		if (pos.x<=Basepos.x+2.5 && pos.x>=Basepos.x-2.5 && pos.z<=Basepos.z+2.5 && pos.z>=Basepos.z-2.5)
 		{
 			
