@@ -13,6 +13,8 @@ TagManager:
   - Disabled
   - Cube
   - Clicked
+  - HomeBase
+  - EnemyBase
   layers:
   - Default
   - TransparentFX
