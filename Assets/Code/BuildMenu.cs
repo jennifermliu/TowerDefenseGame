@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace Assets.Code.Menus
 {
@@ -12,7 +14,7 @@ namespace Assets.Code.Menus
 		private class BuildMenu : Menu
 		{
 
-			
+		
 			//public static GameObject Go;
 
 			public BuildMenu()
@@ -32,12 +34,12 @@ namespace Assets.Code.Menus
 					_build.interactable = false;
 				}
 				var cell = GameObject.FindGameObjectWithTag("Clicked");
-				/*
+				
 				if (BlockingAll())
 				{
 					_build.interactable = false;
 				}
-				*/
+				
 				_build.onClick.AddListener(() =>
 				{
 					Base.dollar = Base.dollar - 50;
@@ -57,7 +59,7 @@ namespace Assets.Code.Menus
 				});
 
 			}
-			/*
+			
 			private bool BlockingAll()
 			{
 				GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
@@ -66,18 +68,18 @@ namespace Assets.Code.Menus
 				GameObject enemybase = GameObject.FindGameObjectWithTag("EnemyBase");
 				GameObject homebase = GameObject.FindGameObjectWithTag("HomeBase");
 				bool[][] map = new bool[5][];
+				bool[][] visited=new bool[5][];
 				for (int i = 0; i < 5; i++)
 				{
 					map[i] = new bool[5];
+					visited[i]=new bool[5];
 				}
 				foreach (var cell in disabled)
 				{
 					float xval = cell.transform.position.x;
 					float zval = cell.transform.position.z;
-					int xindex = (int) (xval + 0.5) / 5;
-					int zindex = (int) (zval + 0.5) / 5;
-					xindex = xindex - 1;
-					zindex = zindex - 1;
+					int xindex = (int) (xval+ 0.5) / 5;
+					int zindex = (int) (zval+0.5) / 5;
 					if (cell.layer == 8)
 					{
 						map[xindex][zindex] = false;
@@ -86,9 +88,19 @@ namespace Assets.Code.Menus
 					{
 						map[xindex][zindex] = true;
 					}
+					//Debug.Log(xval+" "+zval+" "+xindex+" "+zindex);		
 				}
-				
-				
+				//enemy base
+				map[0][4] = false;
+				//home base
+				map[4][0] = false;
+				float x = clicked.transform.position.x;
+				float z = clicked.transform.position.z;
+				int xind = (int) (x+0.5) / 5;
+				int zind = (int) (z+0.5) / 5;
+				map[xind][zind] = true;
+				Debug.Log(x+" "+z+" "+xind+" "+zind);		
+				/*
 				Dictionary<GameObject,bool> dict = new Dictionary<GameObject, bool>();
 				dict[enemybase] = false;
 				dict[homebase] = false;
@@ -105,12 +117,42 @@ namespace Assets.Code.Menus
 						dict[cell] = true;
 					}
 				}
+				*/
+				int[] start={0,4};
+				//var start= new Tuple<int, int>(0,4);
 				
-				
-				//Queue<GameObject>
-				return false;
+				Queue<int[]> q = new Queue<int[]>();
+				q.Enqueue(start);
+				visited[0][4] = true;
+				int[] direction = {0, 1, 0, -1, 0};
+				while (q.Count > 0)
+				{
+					int[] curr = q.Dequeue();
+					int currx = curr[0];
+					int currz = curr[1];
+					if (currx == 4 && currz == 0)
+					{
+						return false;
+					}
+					for (int i = 0; i < direction.Length - 1; i++)
+					{
+						int newx = currx + direction[i];
+						int newz = currz + direction[i + 1];
+						if (newx < 0 || newx > 4 || newz < 0 || newz > 4)
+						{
+							continue;
+						}
+						if (!visited[newx][newz] && !map[newx][newz])
+						{
+							int[] next = {newx, newz};
+							visited[newx][newz] = true;
+							q.Enqueue(next);
+						}
+					}
+				}
+				return true;
 			}
-			*/
+			
 		
 		}	
 	}

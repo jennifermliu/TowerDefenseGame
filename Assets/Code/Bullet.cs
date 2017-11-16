@@ -1,6 +1,7 @@
 ﻿using System.CodeDom.Compiler;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -31,6 +32,10 @@ public class Bullet : MonoBehaviour
 			updated = true;
 		}
 		*/
+		if (near == null)
+		{
+			return;
+		}	
 		enemyPos = near.transform.position;
 		Vector3 bulletPos = transform.position;
 		Vector3 dir = enemyPos  - bulletPos; 
