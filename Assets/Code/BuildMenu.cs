@@ -40,6 +40,11 @@ namespace Assets.Code.Menus
 					_build.interactable = false;
 				}
 				
+				if (EnemyOnCell())
+				{
+					_build.interactable = false;
+				}
+
 				_build.onClick.AddListener(() =>
 				{
 					Base.dollar = Base.dollar - 50;
@@ -99,28 +104,10 @@ namespace Assets.Code.Menus
 				int xind = (int) (x+0.5) / 5;
 				int zind = (int) (z+0.5) / 5;
 				map[xind][zind] = true;
-				Debug.Log(x+" "+z+" "+xind+" "+zind);		
-				/*
-				Dictionary<GameObject,bool> dict = new Dictionary<GameObject, bool>();
-				dict[enemybase] = false;
-				dict[homebase] = false;
-				//if a tower is built here
-				dict[clicked] = true;
-				foreach (var cell in cubes)
-				{
-					if (cell.layer == 8)//no tower
-					{
-						dict[cell] = false;
-					}
-					else if (cell.layer == 9)//has tower
-					{
-						dict[cell] = true;
-					}
-				}
-				*/
+				//Debug.Log(x+" "+z+" "+xind+" "+zind);		
+
 				int[] start={0,4};
-				//var start= new Tuple<int, int>(0,4);
-				
+		
 				Queue<int[]> q = new Queue<int[]>();
 				q.Enqueue(start);
 				visited[0][4] = true;
@@ -152,8 +139,25 @@ namespace Assets.Code.Menus
 				}
 				return true;
 			}
-			
-		
+
+
+			bool EnemyOnCell()
+			{
+				GameObject clicked = GameObject.FindGameObjectWithTag("Clicked");
+				float x = clicked.transform.position.x;
+				float z = clicked.transform.position.z;
+				GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+				foreach (var enemy in enemies)
+				{
+					float ex = enemy.transform.position.x;
+					float ez = enemy.transform.position.z;
+					if (ex < x + 2.5 && ex > x - 2.5 && ez < z + 2.5 && ez > z - 2.5)
+					{
+						return true;
+					}
+				}
+				return false;
+			}
 		}	
 	}
 }

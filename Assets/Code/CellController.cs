@@ -33,11 +33,7 @@ public class CellController : MonoBehaviour
 			else if (gameObject.layer == 8)
 			{
 				UI.HideBuildMenu();
-			}
-			
-			//UI.HideUpgradeMenu();
-			
-			
+			}	
 		}
 	    else if (!CompareTag("EnemyBase") && !CompareTag("HomeBase") && !CompareTag("Disabled") ){
 		    gameObject.GetComponent<Renderer>().material.color = Color.red;
@@ -55,8 +51,6 @@ public class CellController : MonoBehaviour
 			{
 				UI.ShowUpgradeMenu();
 			}
-			
-		
 		}
 		
 	

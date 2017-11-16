@@ -17,8 +17,6 @@ namespace Assets.Code.Menus
 			{
 				Go = (GameObject)Object.Instantiate(Resources.Load("Upgrade Menu"),Canvas);
 				InitializeButtons();
-		
-		
 			}
 
 			private void InitializeButtons()
