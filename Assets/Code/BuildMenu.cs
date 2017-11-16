@@ -32,10 +32,12 @@ namespace Assets.Code.Menus
 					_build.interactable = false;
 				}
 				var cell = GameObject.FindGameObjectWithTag("Clicked");
+				/*
 				if (BlockingAll())
 				{
 					_build.interactable = false;
 				}
+				*/
 				_build.onClick.AddListener(() =>
 				{
 					Base.dollar = Base.dollar - 50;
@@ -55,7 +57,7 @@ namespace Assets.Code.Menus
 				});
 
 			}
-
+			/*
 			private bool BlockingAll()
 			{
 				GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
@@ -72,14 +74,21 @@ namespace Assets.Code.Menus
 				{
 					float xval = cell.transform.position.x;
 					float zval = cell.transform.position.z;
-					int xindex = (int) (xval + 0.5) % 5;
-					int zindex = (int) (zval + 0.5) % 5;
-					Debug.Log(xval);
-					Debug.Log(zval);
-					Debug.Log(xindex);
-					Debug.Log(zindex);
+					int xindex = (int) (xval + 0.5) / 5;
+					int zindex = (int) (zval + 0.5) / 5;
+					xindex = xindex - 1;
+					zindex = zindex - 1;
+					if (cell.layer == 8)
+					{
+						map[xindex][zindex] = false;
+					}
+					else if (cell.layer == 9)
+					{
+						map[xindex][zindex] = true;
+					}
 				}
-				/*
+				
+				
 				Dictionary<GameObject,bool> dict = new Dictionary<GameObject, bool>();
 				dict[enemybase] = false;
 				dict[homebase] = false;
@@ -96,12 +105,13 @@ namespace Assets.Code.Menus
 						dict[cell] = true;
 					}
 				}
-				*/
+				
 				
 				//Queue<GameObject>
 				return false;
 			}
-
+			*/
+		
 		}	
 	}
 }
