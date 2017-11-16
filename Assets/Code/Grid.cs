@@ -23,11 +23,14 @@ public class Grid : MonoBehaviour {
 			{
 				GameObject gridPlane = (GameObject) Instantiate(plane);
 				gridPlane.GetComponent<Renderer> ().material.color = Color.gray;
-				if (label == 5 || label == 21)
+				if (label == 5)
 				{
-					gridPlane.tag = "Unclickable";
+					gridPlane.tag = "EnemyBase";
 				}
-
+				if (label == 21)
+				{
+					gridPlane.tag = "HomeBase";
+				}
 				label++;
 				gridPlane.transform.position = new Vector3(gridPlane.transform.position.x + x*5, 
 					gridPlane.transform.position.y, gridPlane.transform.position.z + z*5 );
