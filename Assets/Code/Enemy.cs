@@ -73,7 +73,16 @@ public class Enemy : MonoBehaviour
 		}
 		Vector3 dir = calculateDirection(pos, Basepos, towers);
 		//Debug.Log(dir);
-		pos = pos + Vector3.Normalize(dir) * 0.1f;
+
+		if (GetComponent<Renderer>().material.color == Color.cyan)
+		{
+			pos = pos + Vector3.Normalize(dir) * 0.2f;
+		}
+		else
+		{
+			pos = pos + Vector3.Normalize(dir) * 0.1f;
+		}
+		
 		if (pos.x<=Basepos.x+2.5 && pos.x>=Basepos.x-2.5 && pos.z<=Basepos.z+2.5 && pos.z>=Basepos.z-2.5)
 		{
 			
@@ -84,7 +93,7 @@ public class Enemy : MonoBehaviour
 				Base.hit = Base.hit - 5;
 			}
 			
-			Debug.Log(Base.hit);
+			//Debug.Log(Base.hit);
 			//_Base.GetComponent<Base>().hit = _Base.GetComponent<Base>().hit - 10;
 			//Debug.Log(_Base.GetComponent<Base>().hit);
 		}
@@ -113,7 +122,7 @@ public class Enemy : MonoBehaviour
 		//add start position to q and visited
 		q.Enqueue(startPos);
 		visited.Add(startPos);
-		float[] direction = {0,1f, 0, -1f, -1f, 1f,1f,-1f,0};
+		float[] direction = {0,1f, 0, -1f, 0};
 		while (q.Count > 0)
 		{
 			Vector3 curr = q.Dequeue();

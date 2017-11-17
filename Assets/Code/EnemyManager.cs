@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -10,12 +11,19 @@ public class EnemyManager : MonoBehaviour
 	private float LastSpawn;
 	private static Object _enemyPrefab;
 	private int i = 0;
+	public GameObject NumWaveText;
+	public static int WaveNumber;
+	//public static int 
+	
 
 	private float TargetTime = 15.0f;
 	// Use this for initialization
 	void Start ()
 	{
 		_enemyPrefab = Resources.Load("Enemy");
+		WaveNumber = 1;
+		NumWaveText = GameObject.FindGameObjectWithTag("NumWave");
+		NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
 	}
 	
 	// Update is called once per frame
@@ -27,15 +35,26 @@ public class EnemyManager : MonoBehaviour
 			if (Time.time - LastSpawn > 10f)
 			{
 				TargetTime = 15f;
+				WaveNumber++;
+				//Debug.Log(WaveNumber);
+				NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
+				i = 0;
 			}
 
 		}
 		else
 		{
 			if ((Time.time - LastSpawn) < SpawnTime) return;
-			LastSpawn = Time.time;
-			Spawn(i);
-			i++;
+
+			if (i <= 17)
+			{
+				LastSpawn = Time.time;
+				Spawn(i);
+				i++;
+				//Debug.Log(i);
+			}
+			
+
 
 		}
 
@@ -52,11 +71,12 @@ public class EnemyManager : MonoBehaviour
 
 		}
 		
+		//fast
 		else if (i % 3 == 1)
 		{
 			go.GetComponent<Renderer> ().material.color = Color.cyan;
 			Enemy newE = go.GetComponent<Enemy>();
-			newE.enemyHealth = 150;
+			newE.enemyHealth = 100;
 		}
 		
 		else if (i % 3 == 2)

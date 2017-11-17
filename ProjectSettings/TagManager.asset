@@ -15,6 +15,10 @@ TagManager:
   - Clicked
   - HomeBase
   - EnemyBase
+  - NumWave
+  - NumNormalEnemy
+  - NumFastEnemy
+  - NumStrongEnemy
   layers:
   - Default
   - TransparentFX
