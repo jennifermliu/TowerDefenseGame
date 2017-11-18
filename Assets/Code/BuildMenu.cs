@@ -105,7 +105,6 @@ namespace Assets.Code.Menus
 				int zind = (int) (z+0.5) / 5;
 				map[xind][zind] = true;
 				//Debug.Log(x+" "+z+" "+xind+" "+zind);		
-
 				int[] start={0,4};
 		
 				Queue<int[]> q = new Queue<int[]>();

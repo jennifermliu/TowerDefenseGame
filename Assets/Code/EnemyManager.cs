@@ -23,12 +23,16 @@ public class EnemyManager : MonoBehaviour
 		_enemyPrefab = Resources.Load("Enemy");
 		WaveNumber = 1;
 		NumWaveText = GameObject.FindGameObjectWithTag("NumWave");
-		NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
+		//NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if (WaveNumber > 5)
+		{
+			return;
+		}
 		TargetTime -= Time.deltaTime;
 		if (TargetTime <= 0.0f)
 		{
@@ -36,8 +40,9 @@ public class EnemyManager : MonoBehaviour
 			{
 				TargetTime = 15f;
 				WaveNumber++;
+				Debug.Log(Time.time);
 				//Debug.Log(WaveNumber);
-				NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
+				//NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
 				i = 0;
 			}
 

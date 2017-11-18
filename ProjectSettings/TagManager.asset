@@ -19,6 +19,7 @@ TagManager:
   - NumNormalEnemy
   - NumFastEnemy
   - NumStrongEnemy
+  - ICON
   layers:
   - Default
   - TransparentFX

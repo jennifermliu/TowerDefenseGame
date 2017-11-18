@@ -14,7 +14,6 @@ public class CellController : MonoBehaviour
 	}
 
 	void OnMouseDown()
-
 	{
 		if (CompareTag("Clicked"))
 		{
@@ -51,10 +50,6 @@ public class CellController : MonoBehaviour
 			{
 				UI.ShowUpgradeMenu();
 			}
-		}
-		
-	
-	    
-		
+		}		
 	}
 }
