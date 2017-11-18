@@ -55,15 +55,15 @@ public class Bullet : MonoBehaviour
 				{
 					if (near.GetComponent<Renderer>().material.color == Color.blue)
 					{
-						Base.dollar += 50;
+						Base.dollar += 10;
 					}	
 					else if (near.GetComponent<Renderer>().material.color == Color.cyan)
 					{
-						Base.dollar += 100;
+						Base.dollar += 20;
 					}
 					else if (near.GetComponent<Renderer>().material.color == Color.green)
 					{
-						Base.dollar += 150;
+						Base.dollar += 50;
 					}
 					near.gameObject.SetActive(false);
 				}

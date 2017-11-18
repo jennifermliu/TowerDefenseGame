@@ -7,23 +7,23 @@ namespace Assets.Code.Menus
     {
         public static Transform Canvas { get; private set; }
 
-        private BuildMenu _main;
+        private BuildMenu _build;
         private UpgradeMenu _pause;
 
-        public bool InMainMenu { get { return _main != null && _main.Showing; } }
+        public bool InMainMenu { get { return _build != null && _build.Showing; } }
 
         public UIManager () {
             Canvas = GameObject.Find("Canvas").transform; // There should only ever be one canvas
         }
 
         public void ShowBuildMenu () {
-            _main = new BuildMenu();
-            _main.Show();
+            _build = new BuildMenu();
+            _build.Show();
         }
 
         public void HideBuildMenu () {
-            _main.Hide();
-            _main = null;
+            _build.Hide();
+            _build = null;
         }
 
         public void ShowUpgradeMenu () {

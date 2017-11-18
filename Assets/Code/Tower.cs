@@ -20,10 +20,10 @@ public class Tower : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		Enemy[] enemys = FindObjectsOfType(typeof(Enemy)) as Enemy[];
+		Enemy[] enemies = FindObjectsOfType(typeof(Enemy)) as Enemy[];
 		//Enemy nearest = null;
 		var shortest = float.MaxValue;
-		foreach (Enemy enemy in enemys)
+		foreach (Enemy enemy in enemies)
 		{
 			if (((enemy.transform.position - _tower.transform.position).sqrMagnitude) < shortest)
 			{

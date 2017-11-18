@@ -12,6 +12,11 @@ public class towerBuild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Base.end)
+		{
+			return;
+		}
+		
 		Enemy[] enemys = FindObjectsOfType(typeof(Enemy)) as Enemy[];
 		//Enemy nearest = null;
 		var shortest = float.MaxValue;

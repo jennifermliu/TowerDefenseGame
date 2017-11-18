@@ -48,7 +48,7 @@ namespace Assets.Code.Menus
 							tower.gameObject.SetActive(false);
 						}	
 					}
-					Base.dollar = Base.dollar + 45;
+					Base.dollar = Base.dollar + 0.9f*Base.towerprice;
 					cell.layer = 8;
 					cell.GetComponent<Renderer>().material.color = Color.gray;
 					cell.tag = "Cube";

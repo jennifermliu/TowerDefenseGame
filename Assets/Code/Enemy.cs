@@ -40,6 +40,11 @@ public class Enemy : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+		if (Base.end)
+		{
+			return;
+		}
+		
 		GameObject _Base = GameObject.FindWithTag("Base");
 		Basepos = _Base.transform.position;
 		//Debug.Log(_enemy.transform.position);

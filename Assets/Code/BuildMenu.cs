@@ -29,7 +29,7 @@ namespace Assets.Code.Menus
 			{
 				var _build = GameObject.Find("Build").GetComponent<Button>();
 
-				if (Base.dollar < 50)
+				if (Base.dollar < Base.towerprice)
 				{
 					_build.interactable = false;
 				}
@@ -47,7 +47,7 @@ namespace Assets.Code.Menus
 
 				_build.onClick.AddListener(() =>
 				{
-					Base.dollar = Base.dollar - 50;
+					Base.dollar = Base.dollar - Base.towerprice;
 					//var cell = GameObject.FindGameObjectWithTag("Clicked");
 					cell.layer = 9;
 					Vector3 towerPos = new Vector3(cell.transform.position.x, cell.transform.position.y+2,cell.transform.position.z);

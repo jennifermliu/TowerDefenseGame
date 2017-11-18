@@ -29,6 +29,11 @@ public class EnemyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		if (Base.end)
+		{
+			return;
+		}
+		
 		if (WaveNumber > 5)
 		{
 			return;
@@ -40,7 +45,7 @@ public class EnemyManager : MonoBehaviour
 			{
 				TargetTime = 15f;
 				WaveNumber++;
-				Debug.Log(Time.time);
+				//Debug.Log(Time.time);
 				//Debug.Log(WaveNumber);
 				//NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
 				i = 0;

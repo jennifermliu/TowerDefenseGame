@@ -18,10 +18,10 @@ public class ICON : MonoBehaviour
 			{
 				if (_text.name == "NumWave")
 				{
-					_text.text = "NumWave: " + i;
+					_text.text = "Wave: " + i;
 				}
 			}
-			Vector3 newpos=new Vector3(55+(i-1)*125, newicon.transform.position.y, newicon.transform.position.z);
+			Vector3 newpos=new Vector3(55+(i-1)*120, newicon.transform.position.y, newicon.transform.position.z);
 			//Debug.Log(newpos);
 			newicon.transform.position = newpos;
 		}
@@ -29,12 +29,18 @@ public class ICON : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+		
+		if (Base.hit <= 0)
+		{
+			return;
+		}
+		
 		//icon = GameObject.FindGameObjectWithTag("ICON");
 
 		GameObject[] allicons = GameObject.FindGameObjectsWithTag("ICON");
 		foreach (var icon in allicons)
 		{
-			icon.transform.position = icon.transform.position + 0.15f*Vector3.left;
+			icon.transform.position = icon.transform.position + 0.135f*Vector3.left;
 			//Debug.Log(icon.transform.position.x);
 			if (icon.transform.position.x < 50)
 			{

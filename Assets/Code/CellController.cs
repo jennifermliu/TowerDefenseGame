@@ -15,6 +15,11 @@ public class CellController : MonoBehaviour
 
 	void OnMouseDown()
 	{
+		if (Base.end)
+		{
+			return;
+		}
+		
 		if (CompareTag("Clicked"))
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.gray;
