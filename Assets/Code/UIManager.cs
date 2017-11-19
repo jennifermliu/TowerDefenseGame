@@ -8,7 +8,7 @@ namespace Assets.Code.Menus
         public static Transform Canvas { get; private set; }
 
         private BuildMenu _build;
-        private UpgradeMenu _pause;
+        private UpgradeMenu _upgrade;
 
         public bool InMainMenu { get { return _build != null && _build.Showing; } }
 
@@ -27,14 +27,14 @@ namespace Assets.Code.Menus
         }
 
         public void ShowUpgradeMenu () {
-            _pause = new UpgradeMenu();
-            _pause.Show();
+            _upgrade = new UpgradeMenu();
+            _upgrade.Show();
 
         } 
 
         public void HideUpgradeMenu () {
-            _pause.Hide();
-            _pause = null;
+            _upgrade.Hide();
+            _upgrade = null;
         }
 
 

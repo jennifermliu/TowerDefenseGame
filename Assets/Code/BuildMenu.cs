@@ -10,19 +10,12 @@ namespace Assets.Code.Menus
 {
 	public partial class UIManager
 	{
-		
 		private class BuildMenu : Menu
 		{
-
-		
-			//public static GameObject Go;
-
 			public BuildMenu()
 			{
 				Go = (GameObject)Object.Instantiate(Resources.Load("Build Menu"),Canvas);
 				InitializeButtons();
-		
-		
 			}
 
 			private void InitializeButtons()
@@ -48,7 +41,6 @@ namespace Assets.Code.Menus
 				_build.onClick.AddListener(() =>
 				{
 					Base.dollar = Base.dollar - Base.towerprice;
-					//var cell = GameObject.FindGameObjectWithTag("Clicked");
 					cell.layer = 9;
 					Vector3 towerPos = new Vector3(cell.transform.position.x, cell.transform.position.y+2,cell.transform.position.z);
 					var tower = (GameObject)Object.Instantiate(Resources.Load("Tower"),towerPos,Quaternion.identity);
@@ -92,8 +84,7 @@ namespace Assets.Code.Menus
 					else if (cell.layer == 9)
 					{
 						map[xindex][zindex] = true;
-					}
-					//Debug.Log(xval+" "+zval+" "+xindex+" "+zindex);		
+					}		
 				}
 				//enemy base
 				map[0][4] = false;
@@ -103,8 +94,7 @@ namespace Assets.Code.Menus
 				float z = clicked.transform.position.z;
 				int xind = (int) (x+0.5) / 5;
 				int zind = (int) (z+0.5) / 5;
-				map[xind][zind] = true;
-				//Debug.Log(x+" "+z+" "+xind+" "+zind);		
+				map[xind][zind] = true;	
 				int[] start={0,4};
 		
 				Queue<int[]> q = new Queue<int[]>();

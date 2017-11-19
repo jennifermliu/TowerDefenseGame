@@ -18,7 +18,6 @@ public class towerBuild : MonoBehaviour {
 		}
 		
 		Enemy[] enemys = FindObjectsOfType(typeof(Enemy)) as Enemy[];
-		//Enemy nearest = null;
 		var shortest = float.MaxValue;
 		foreach (Enemy enemy in enemys)
 		{

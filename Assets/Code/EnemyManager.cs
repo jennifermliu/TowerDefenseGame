@@ -7,13 +7,11 @@ using UnityEngine.UI;
 public class EnemyManager : MonoBehaviour
 {
 	private const float SpawnTime = 0.8f;
-	//private const float WaveTime = 10f;
 	private float LastSpawn;
 	private static Object _enemyPrefab;
 	private int i = 0;
 	public GameObject NumWaveText;
 	public static int WaveNumber;
-	//public static int 
 	
 
 	private float TargetTime = 15.0f;
@@ -23,7 +21,6 @@ public class EnemyManager : MonoBehaviour
 		_enemyPrefab = Resources.Load("Enemy");
 		WaveNumber = 1;
 		NumWaveText = GameObject.FindGameObjectWithTag("NumWave");
-		//NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
 	}
 	
 	// Update is called once per frame
@@ -45,9 +42,6 @@ public class EnemyManager : MonoBehaviour
 			{
 				TargetTime = 15f;
 				WaveNumber++;
-				//Debug.Log(Time.time);
-				//Debug.Log(WaveNumber);
-				//NumWaveText.GetComponent<Text>().text = "NumWave: " + WaveNumber;
 				i = 0;
 			}
 
@@ -61,7 +55,6 @@ public class EnemyManager : MonoBehaviour
 				LastSpawn = Time.time;
 				Spawn(i);
 				i++;
-				//Debug.Log(i);
 			}
 			
 

@@ -10,9 +10,6 @@ namespace Assets.Code.Menus
 	{
 		private class UpgradeMenu : Menu
 		{
-
-			//public static GameObject Go;
-
 			public UpgradeMenu()
 			{
 				Go = (GameObject)Object.Instantiate(Resources.Load("Upgrade Menu"),Canvas);
@@ -59,9 +56,7 @@ namespace Assets.Code.Menus
 					}
 					Hide();	
 				});
-
 			}
-
 		}	
 	}
 }

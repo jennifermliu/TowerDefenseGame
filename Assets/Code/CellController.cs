@@ -19,7 +19,6 @@ public class CellController : MonoBehaviour
 		{
 			return;
 		}
-		
 		if (CompareTag("Clicked"))
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.gray;
@@ -32,7 +31,6 @@ public class CellController : MonoBehaviour
 			if (gameObject.layer == 9)
 			{
 				UI.HideUpgradeMenu();
-				
 			}
 			else if (gameObject.layer == 8)
 			{

@@ -21,7 +21,6 @@ public class Tower : MonoBehaviour
 	void Update()
 	{
 		Enemy[] enemies = FindObjectsOfType(typeof(Enemy)) as Enemy[];
-		//Enemy nearest = null;
 		var shortest = float.MaxValue;
 		foreach (Enemy enemy in enemies)
 		{
@@ -38,12 +37,6 @@ public class Tower : MonoBehaviour
 			Quaternion rotation = Quaternion.LookRotation(relativepos);
 			_tower.transform.rotation = rotation;
 		}
-
-
-
-
-
-
 	}
 }
 

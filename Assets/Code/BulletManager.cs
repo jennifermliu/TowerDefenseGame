@@ -30,8 +30,6 @@ public class BulletManager : MonoBehaviour
 
 	public static void ForceSpawn()
 	{
-		
-		//var tower = GameObject.FindGameObjectWithTag("Clicked");
 		towerBuild[] towers = FindObjectsOfType<towerBuild>();
 		foreach (towerBuild tower in towers)
 		{
