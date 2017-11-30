@@ -69,18 +69,35 @@ public class Enemy : MonoBehaviour
 		{
 			pos = pos + Vector3.Normalize(dir) * 0.04f*(EnemyManager.WaveNumber+5);
 		}
-		else
+		else if (GetComponent<Renderer>().material.color == Color.green)
 		{
 			pos = pos + Vector3.Normalize(dir) * 0.02f*(EnemyManager.WaveNumber+5);
 		}
+		else
+		{
+			pos = pos + Vector3.Normalize(dir) * 0.03f*(EnemyManager.WaveNumber+5);
+		}
 		
 		if (pos.x<=Basepos.x+2.5 && pos.x>=Basepos.x-2.5 && pos.z<=Basepos.z+2.5 && pos.z>=Basepos.z-2.5)
-		{
-			
+		{	
 			gameObject.SetActive(false);
 			if (Base.hit > 0)
 			{
-				Base.hit = Base.hit - 5;
+				//fast			
+				if (GetComponent<Renderer>().material.color == Color.cyan)
+				{
+					Base.hit = Base.hit - 5;
+				}
+				//strong
+				else if (GetComponent<Renderer>().material.color == Color.green)
+				{
+					Base.hit = Base.hit - 15;
+				}
+				else
+				{
+					Base.hit = Base.hit - 10;
+				}
+
 			}
 		}
 		else

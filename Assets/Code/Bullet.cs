@@ -39,11 +39,11 @@ public class Bullet : MonoBehaviour
 				{
 					if (near.GetComponent<Renderer>().material.color == Color.blue)
 					{
-						Base.dollar += 10;
+						Base.dollar += 20;
 					}	
 					else if (near.GetComponent<Renderer>().material.color == Color.cyan)
 					{
-						Base.dollar += 20;
+						Base.dollar += 10;
 					}
 					else if (near.GetComponent<Renderer>().material.color == Color.green)
 					{

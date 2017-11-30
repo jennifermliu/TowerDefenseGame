@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
-	private const float SpawnTime = 0.8f;
+	private float SpawnTime = 0.6f;
 	private float LastSpawn;
 	private static Object _enemyPrefab;
 	private int i = 0;
@@ -48,9 +48,12 @@ public class EnemyManager : MonoBehaviour
 		}
 		else
 		{
+			
+			
+			
 			if ((Time.time - LastSpawn) < SpawnTime) return;
 
-			if (i <= 17)
+			if (i <= 29)
 			{
 				LastSpawn = Time.time;
 				Spawn(i);
@@ -66,27 +69,32 @@ public class EnemyManager : MonoBehaviour
 	private void Spawn(int i)
 	{
 		var go = (GameObject) Instantiate(_enemyPrefab);
-		if (i % 3 == 0)
+		if (i % 5 == 0)
 		{
 			go.GetComponent<Renderer> ().material.color = Color.blue;
 			Enemy newE = go.GetComponent<Enemy>();
 			newE.enemyHealth = 100;
+			//SpawnTime = 0.8f;
 
 		}
 		
 		//fast
-		else if (i % 3 == 1)
+		else if (i % 5 == 1 || i % 5 == 2 || i % 5 == 3)
 		{
 			go.GetComponent<Renderer> ().material.color = Color.cyan;
+			go.transform.localScale -= new Vector3(0.3f,0.3f,0.3f);
 			Enemy newE = go.GetComponent<Enemy>();
-			newE.enemyHealth = 100;
+			newE.enemyHealth = 50;
+			//SpawnTime = 0.2f;
 		}
 		
-		else if (i % 3 == 2)
+		else if (i % 5 == 4)
 		{
 			go.GetComponent<Renderer> ().material.color = Color.green;
+			go.transform.localScale += new Vector3(0.3f,0.3f,0.3f);
 			Enemy newE = go.GetComponent<Enemy>();
 			newE.enemyHealth = 200;
+			//SpawnTime = 0.8f;
 		}
 	}
 	
