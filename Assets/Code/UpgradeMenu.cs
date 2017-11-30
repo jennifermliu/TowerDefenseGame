@@ -35,10 +35,18 @@ namespace Assets.Code.Menus
 				var _sell = GameObject.Find("Sell").GetComponent<Button>();
 				_sell.onClick.AddListener(() =>
 				{
-					towerBuild[] towers = GameObject.FindObjectsOfType<towerBuild>();
+					towerBuild[] regulartowers = GameObject.FindObjectsOfType<towerBuild>();
+					FreezetowerBuild[] freezetowers = GameObject.FindObjectsOfType<FreezetowerBuild>();
 					var cell = GameObject.FindGameObjectWithTag("Clicked");
 					Vector3 towerPos = new Vector3(cell.transform.position.x,cell.transform.position.y+2,cell.transform.position.z);
-					foreach (towerBuild tower in towers)
+					foreach (towerBuild tower in regulartowers)
+					{
+						if (tower.transform.position == towerPos)
+						{
+							tower.gameObject.SetActive(false);
+						}	
+					}
+					foreach (FreezetowerBuild tower in freezetowers)
 					{
 						if (tower.transform.position == towerPos)
 						{

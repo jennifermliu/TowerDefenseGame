@@ -31,7 +31,7 @@ public class Base : MonoBehaviour {
 		Meter.value = hit;
 		
 		Text = GameObject.FindGameObjectWithTag("Money");
-		dollar = 150;
+		dollar = 1500;
 		Text.GetComponent<Text>().text = "$ " + dollar;
 	}
 	

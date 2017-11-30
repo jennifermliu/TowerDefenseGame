@@ -20,22 +20,26 @@ namespace Assets.Code.Menus
 
 			private void InitializeButtons()
 			{
-				var _build = GameObject.Find("Build").GetComponent<Button>();
+				var _build = GameObject.Find("Build Normal").GetComponent<Button>();
+				var _build_Freeze = GameObject.Find("Build Freeze").GetComponent<Button>();
 
 				if (Base.dollar < Base.towerprice)
 				{
 					_build.interactable = false;
+					_build_Freeze.interactable = false;
 				}
 				var cell = GameObject.FindGameObjectWithTag("Clicked");
 				
 				if (BlockingAll())
 				{
 					_build.interactable = false;
+					_build_Freeze.interactable = false;
 				}
 				
 				if (EnemyOnCell())
 				{
 					_build.interactable = false;
+					_build_Freeze.interactable = false;
 				}
 
 				_build.onClick.AddListener(() =>
@@ -44,6 +48,23 @@ namespace Assets.Code.Menus
 					cell.layer = 9;
 					Vector3 towerPos = new Vector3(cell.transform.position.x, cell.transform.position.y+2,cell.transform.position.z);
 					var tower = (GameObject)Object.Instantiate(Resources.Load("Tower"),towerPos,Quaternion.identity);
+	
+					cell.GetComponent<Renderer>().material.color = Color.gray;
+					cell.tag = "Cube";
+					GameObject[] disable = GameObject.FindGameObjectsWithTag("Disabled");
+					foreach (var cub in disable)
+					{
+						cub.tag = "Cube";
+					}
+					Hide();				
+				});
+				
+				_build_Freeze.onClick.AddListener(() =>
+				{
+					Base.dollar = Base.dollar - Base.towerprice;
+					cell.layer = 9;
+					Vector3 towerPos = new Vector3(cell.transform.position.x, cell.transform.position.y+2,cell.transform.position.z);
+					var tower = (GameObject)Object.Instantiate(Resources.Load("FreezeTower"),towerPos,Quaternion.identity);
 	
 					cell.GetComponent<Renderer>().material.color = Color.gray;
 					cell.tag = "Cube";

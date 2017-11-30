@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
@@ -13,9 +14,11 @@ public class Enemy : MonoBehaviour
 	private	Vector3 pos;
 	private Vector3 Basepos;
 	//public GameObject _enemy;
-	public int enemyHealth;
+	public double enemyHealth;
+	private float multiplier;
 
-	public int GetHealth()
+
+	public double GetHealth()
 	{
 		return enemyHealth;
 	} 
@@ -27,6 +30,8 @@ public class Enemy : MonoBehaviour
 	// Use this for initialization
 	void Start () {		
 		pos = transform.position;
+		multiplier = 1f;
+
 	}
 	
 	// Update is called once per frame
@@ -64,18 +69,36 @@ public class Enemy : MonoBehaviour
 			}
 		}
 		Vector3 dir = calculateDirection(pos, Basepos, towers);
-
+		
+		
+		GameObject[] freezetowers= GameObject.FindGameObjectsWithTag("Freeze");
+		//bool freezed = false;
+		//bool[][] hasfreeze=findfreeze(freezetowers);
+		double freezecount = 0;
+		foreach (GameObject tower in freezetowers)
+		{
+			Vector3 towerpos = tower.transform.position;
+			if (pos.x < towerpos.x + 7.5 && pos.x > towerpos.x - 7.5 && pos.z < towerpos.z + 7.5 && pos.z > towerpos.z - 7.5)
+			{
+				freezecount = freezecount + 1;
+			}
+		}
+		enemyHealth = enemyHealth - freezecount * 0.1;
+		Debug.Log(enemyHealth);
+		double casted = Math.Pow(0.8, freezecount);
+		multiplier = (float) casted;
+		Debug.Log(multiplier);
 		if (GetComponent<Renderer>().material.color == Color.cyan)
 		{
-			pos = pos + Vector3.Normalize(dir) * 0.04f*(EnemyManager.WaveNumber+5);
+			pos = pos + Vector3.Normalize(dir) * 0.04f*multiplier*(EnemyManager.WaveNumber+5);
 		}
 		else if (GetComponent<Renderer>().material.color == Color.green)
 		{
-			pos = pos + Vector3.Normalize(dir) * 0.02f*(EnemyManager.WaveNumber+5);
+			pos = pos + Vector3.Normalize(dir) * 0.02f*multiplier*(EnemyManager.WaveNumber+5);
 		}
 		else
 		{
-			pos = pos + Vector3.Normalize(dir) * 0.03f*(EnemyManager.WaveNumber+5);
+			pos = pos + Vector3.Normalize(dir) * 0.03f*multiplier*(EnemyManager.WaveNumber+5);
 		}
 		
 		if (pos.x<=Basepos.x+2.5 && pos.x>=Basepos.x-2.5 && pos.z<=Basepos.z+2.5 && pos.z>=Basepos.z-2.5)
@@ -111,7 +134,27 @@ public class Enemy : MonoBehaviour
 		
 
 	}
-
+	
+	/*
+	bool[][] findfreeze(GameObject[] freezetowers)
+	{
+		bool[][] hasfreeze=new bool[5][];
+		for (int i = 0; i < 5; i++)
+		{
+			hasfreeze[i]=new bool[5];
+		}
+		foreach (GameObject tower in freezetowers)
+		{
+			float x = tower.transform.position.x;
+			float z = tower.transform.position.z;
+			int xind = (int) (x+0.5) / 5;
+			int zind = (int) (z+0.5) / 5;
+			hasfreeze[xind][zind] = true;
+		}
+		return hasfreeze;
+	}
+	*/
+	
 	Vector3 calculateDirection(Vector3 startPos, Vector3 endPos, List<GameObject> towers)
 	{
 		//keep track of visited positions

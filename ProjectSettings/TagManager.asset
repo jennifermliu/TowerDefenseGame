@@ -20,6 +20,9 @@ TagManager:
   - NumFastEnemy
   - NumStrongEnemy
   - ICON
+  - Freeze
+  - Regular
+  - Shock
   layers:
   - Default
   - TransparentFX

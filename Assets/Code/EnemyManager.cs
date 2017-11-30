@@ -47,10 +47,7 @@ public class EnemyManager : MonoBehaviour
 
 		}
 		else
-		{
-			
-			
-			
+		{	
 			if ((Time.time - LastSpawn) < SpawnTime) return;
 
 			if (i <= 29)
@@ -59,11 +56,7 @@ public class EnemyManager : MonoBehaviour
 				Spawn(i);
 				i++;
 			}
-			
-
-
 		}
-
 	}
 
 	private void Spawn(int i)
