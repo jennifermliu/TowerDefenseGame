@@ -8,7 +8,7 @@ using UnityEngine.Assertions.Comparers;
 public class ShocktowerBuild : MonoBehaviour
 {
 	
-	private float ShockTime = 4f;
+	private float ShockTime = 5f;
 	private float LastShock;
 	// Use this for initialization
 	void Start () {
