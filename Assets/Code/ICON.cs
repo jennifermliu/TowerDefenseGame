@@ -10,7 +10,7 @@ public class ICON : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		icon = Resources.Load("ICON");
-		for (int i = 1; i <= 5; i++)
+		for (int i = 1; i <= 9; i++)
 		{
 			GameObject newicon = (GameObject) Instantiate(icon,GameObject.Find("Canvas").transform);
 			var texts = newicon.GetComponentsInChildren<Text>();
@@ -19,6 +19,136 @@ public class ICON : MonoBehaviour
 				if (_text.name == "NumWave")
 				{
 					_text.text = "Wave: " + i;
+				}
+
+
+				if (i == 1)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "5 normal";
+					}
+
+				}
+				
+				else if (i == 2)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "10 normal";
+					}
+				}
+				
+				else if (i == 3)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "5 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "5 fast";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "5 normal";
+					}
+				}
+				
+				else if (i == 4)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "5 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "2 strong";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "5 normal";
+					}
+				}
+				
+				else if (i == 5)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "10 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "4 strong";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "10 normal";
+					}
+				}
+				
+				else if (i == 6)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "10 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "4 strong";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "10 fast";
+					}
+				}
+				
+				else if (i == 7)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "5 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "2 strong";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "5 normal";
+					}
+				}
+				
+				else if (i == 8)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "10 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "4 strong";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "10 normal";
+					}
+				}
+				
+				else if (i == 9)
+				{
+					if (_text.name == "first")
+					{
+						_text.text = "10 normal";
+					}
+					else if (_text.name == "second")
+					{
+						_text.text = "4 strong";
+					}
+					else if (_text.name == "third")
+					{
+						_text.text = "10 fast";
+					}
 				}
 			}
 			Vector3 newpos=new Vector3(55+(i-1)*120, newicon.transform.position.y, newicon.transform.position.z);

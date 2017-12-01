@@ -20,7 +20,7 @@ public class Base : MonoBehaviour {
 	void Start ()
 	{
 		end = false;
-		hit = 100;
+		hit = 1000;
 		towerprice = 100;
 		
 		GameObject _base = (GameObject) Instantiate(Cylin);
@@ -54,8 +54,8 @@ public class Base : MonoBehaviour {
 		Meter.value = hit;  
 		Text.GetComponent<Text>().text = "$ " + dollar;
 		
-		//when wavenumber is set to 6, check if all enemies are gone, if so, winning
-		if (EnemyManager.WaveNumber > 5)
+		//when wavenumber is set to 9, check if all enemies are gone, if so, winning
+		if (EnemyManager.WaveNumber > 8)
 		{
 			GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 			foreach (var enemy in enemies)
