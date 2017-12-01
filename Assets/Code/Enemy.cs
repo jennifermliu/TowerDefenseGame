@@ -84,10 +84,10 @@ public class Enemy : MonoBehaviour
 			}
 		}
 		enemyHealth = enemyHealth - freezecount * 0.1;
-		Debug.Log(enemyHealth);
+		//Debug.Log(enemyHealth);
 		double casted = Math.Pow(0.8, freezecount);
 		multiplier = (float) casted;
-		Debug.Log(multiplier);
+		//Debug.Log(multiplier);
 		if (GetComponent<Renderer>().material.color == Color.cyan)
 		{
 			pos = pos + Vector3.Normalize(dir) * 0.04f*multiplier*(EnemyManager.WaveNumber+5);
@@ -195,7 +195,7 @@ public class Enemy : MonoBehaviour
 			for (int i = 0; i < direction.Length - 1; i++)
 			{
 				Vector3 next=new Vector3(curr.x+direction[i],curr.y,curr.z+direction[i+1]);
-				if (next.x < -3 || next.x > 22 || next.y < -3 || next.y > 22)
+				if (next.x < -3 || next.x > 22 || next.z < -3 || next.z > 22)
 				{
 					continue;
 				}

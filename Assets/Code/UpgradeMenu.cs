@@ -37,6 +37,7 @@ namespace Assets.Code.Menus
 				{
 					towerBuild[] regulartowers = GameObject.FindObjectsOfType<towerBuild>();
 					FreezetowerBuild[] freezetowers = GameObject.FindObjectsOfType<FreezetowerBuild>();
+					ShocktowerBuild[] shocktowers = GameObject.FindObjectsOfType<ShocktowerBuild>();
 					var cell = GameObject.FindGameObjectWithTag("Clicked");
 					Vector3 towerPos = new Vector3(cell.transform.position.x,cell.transform.position.y+2,cell.transform.position.z);
 					foreach (towerBuild tower in regulartowers)
@@ -47,6 +48,13 @@ namespace Assets.Code.Menus
 						}	
 					}
 					foreach (FreezetowerBuild tower in freezetowers)
+					{
+						if (tower.transform.position == towerPos)
+						{
+							tower.gameObject.SetActive(false);
+						}	
+					}
+					foreach (ShocktowerBuild tower in shocktowers)
 					{
 						if (tower.transform.position == towerPos)
 						{

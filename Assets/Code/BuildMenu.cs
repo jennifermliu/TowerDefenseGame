@@ -22,11 +22,13 @@ namespace Assets.Code.Menus
 			{
 				var _build = GameObject.Find("Build Normal").GetComponent<Button>();
 				var _build_Freeze = GameObject.Find("Build Freeze").GetComponent<Button>();
+				var _build_Shock = GameObject.Find("Build Shock").GetComponent<Button>();
 
 				if (Base.dollar < Base.towerprice)
 				{
 					_build.interactable = false;
 					_build_Freeze.interactable = false;
+					_build_Shock.interactable = false;
 				}
 				var cell = GameObject.FindGameObjectWithTag("Clicked");
 				
@@ -34,12 +36,14 @@ namespace Assets.Code.Menus
 				{
 					_build.interactable = false;
 					_build_Freeze.interactable = false;
+					_build_Shock.interactable = false;
 				}
 				
 				if (EnemyOnCell())
 				{
 					_build.interactable = false;
 					_build_Freeze.interactable = false;
+					_build_Shock.interactable = false;
 				}
 
 				_build.onClick.AddListener(() =>
@@ -76,6 +80,22 @@ namespace Assets.Code.Menus
 					Hide();				
 				});
 
+				_build_Shock.onClick.AddListener(() =>
+				{
+					Base.dollar = Base.dollar - Base.towerprice;
+					cell.layer = 9;
+					Vector3 towerPos = new Vector3(cell.transform.position.x, cell.transform.position.y+2,cell.transform.position.z);
+					var tower = (GameObject)Object.Instantiate(Resources.Load("ShockTower"),towerPos,Quaternion.identity);
+	
+					cell.GetComponent<Renderer>().material.color = Color.gray;
+					cell.tag = "Cube";
+					GameObject[] disable = GameObject.FindGameObjectsWithTag("Disabled");
+					foreach (var cub in disable)
+					{
+						cub.tag = "Cube";
+					}
+					Hide();				
+				});
 			}
 			
 			private bool BlockingAll()
