@@ -70,7 +70,5 @@ public class Base : MonoBehaviour {
 			end = true;
 		}
 	}
-
-
 }
 

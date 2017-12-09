@@ -19,7 +19,7 @@ public class CellController : MonoBehaviour
 		{
 			return;
 		}
-		if (CompareTag("Clicked"))
+		if (CompareTag("Clicked"))//if click again on a clicked cell, deselect the cell
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.gray;
 			tag = "Cube";
@@ -37,7 +37,9 @@ public class CellController : MonoBehaviour
 				UI.HideBuildMenu();
 			}	
 		}
-	    else if (!CompareTag("EnemyBase") && !CompareTag("HomeBase") && !CompareTag("Disabled") ){
+		//if clicked on a selectable cell, select the cell and show respective menu
+	    else if (!CompareTag("EnemyBase") && !CompareTag("HomeBase") && !CompareTag("Disabled"))
+		{
 		    gameObject.GetComponent<Renderer>().material.color = Color.red;
 		    tag = "Clicked";
 		    GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");

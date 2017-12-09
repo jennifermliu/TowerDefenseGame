@@ -16,7 +16,6 @@ public class towerBuild : MonoBehaviour {
 		{
 			return;
 		}
-		
 		Enemy[] enemys = FindObjectsOfType(typeof(Enemy)) as Enemy[];
 		var shortest = float.MaxValue;
 		foreach (Enemy enemy in enemys)
@@ -27,7 +26,6 @@ public class towerBuild : MonoBehaviour {
 				nearest = enemy;
 			}
 		}
-
 		if (shortest < float.MaxValue)
 		{
 			Vector3 relativepos = nearest.transform.position -transform.position;

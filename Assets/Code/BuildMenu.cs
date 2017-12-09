@@ -20,18 +20,23 @@ namespace Assets.Code.Menus
 
 			private void InitializeButtons()
 			{
+				//3 kinds of build buttons
 				var _build = GameObject.Find("Build Normal").GetComponent<Button>();
 				var _build_Freeze = GameObject.Find("Build Freeze").GetComponent<Button>();
 				var _build_Shock = GameObject.Find("Build Shock").GetComponent<Button>();
 
+				//if money not enough to build a tower, disable menu
 				if (Base.dollar < Base.towerprice)
 				{
 					_build.interactable = false;
 					_build_Freeze.interactable = false;
 					_build_Shock.interactable = false;
 				}
+				
+				//get the clicked cell
 				var cell = GameObject.FindGameObjectWithTag("Clicked");
 				
+				//if this cell is blockinh enemies from reaching base, disable menu
 				if (BlockingAll())
 				{
 					_build.interactable = false;
@@ -39,6 +44,7 @@ namespace Assets.Code.Menus
 					_build_Shock.interactable = false;
 				}
 				
+				//if there's enemy on this cell, can't build tower here
 				if (EnemyOnCell())
 				{
 					_build.interactable = false;
@@ -46,23 +52,29 @@ namespace Assets.Code.Menus
 					_build_Shock.interactable = false;
 				}
 
+				//build regular tower
 				_build.onClick.AddListener(() =>
 				{
-					Base.dollar = Base.dollar - Base.towerprice;
-					cell.layer = 9;
+					Base.dollar = Base.dollar - Base.towerprice;//update money
+					cell.layer = 9;//change layer to hasTower
+					
+					//build the tower
 					Vector3 towerPos = new Vector3(cell.transform.position.x, cell.transform.position.y+2,cell.transform.position.z);
 					var tower = (GameObject)Object.Instantiate(Resources.Load("Tower"),towerPos,Quaternion.identity);
 	
+					//unselect the cell
 					cell.GetComponent<Renderer>().material.color = Color.gray;
 					cell.tag = "Cube";
+					//select status of other cells 
 					GameObject[] disable = GameObject.FindGameObjectsWithTag("Disabled");
 					foreach (var cub in disable)
 					{
 						cub.tag = "Cube";
 					}
-					Hide();				
+					Hide();	//hide menu when done			
 				});
 				
+				//build freeze tower
 				_build_Freeze.onClick.AddListener(() =>
 				{
 					Base.dollar = Base.dollar - Base.towerprice;
@@ -80,6 +92,7 @@ namespace Assets.Code.Menus
 					Hide();				
 				});
 
+				//build shock tower
 				_build_Shock.onClick.AddListener(() =>
 				{
 					Base.dollar = Base.dollar - Base.towerprice;
@@ -100,12 +113,9 @@ namespace Assets.Code.Menus
 			
 			private bool BlockingAll()
 			{
-				GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
 				GameObject[] disabled = GameObject.FindGameObjectsWithTag("Disabled");
 				GameObject clicked = GameObject.FindGameObjectWithTag("Clicked");
-				GameObject enemybase = GameObject.FindGameObjectWithTag("EnemyBase");
-				GameObject homebase = GameObject.FindGameObjectWithTag("HomeBase");
-				bool[][] map = new bool[5][];
+				bool[][] map = new bool[5][];//record cells with tower
 				bool[][] visited=new bool[5][];
 				for (int i = 0; i < 5; i++)
 				{
@@ -120,11 +130,11 @@ namespace Assets.Code.Menus
 					int zindex = (int) (zval+0.5) / 5;
 					if (cell.layer == 8)
 					{
-						map[xindex][zindex] = false;
+						map[xindex][zindex] = false;//no tower
 					}
 					else if (cell.layer == 9)
 					{
-						map[xindex][zindex] = true;
+						map[xindex][zindex] = true;//has tower
 					}		
 				}
 				//enemy base
@@ -135,21 +145,24 @@ namespace Assets.Code.Menus
 				float z = clicked.transform.position.z;
 				int xind = (int) (x+0.5) / 5;
 				int zind = (int) (z+0.5) / 5;
-				map[xind][zind] = true;	
+				map[xind][zind] = true;	//asssuming building a tower on clicked cell
+				
 				int[] start={0,4};
-		
 				Queue<int[]> q = new Queue<int[]>();
 				q.Enqueue(start);
 				visited[0][4] = true;
+				
+				//traverse 4 directions
 				int[] direction = {0, 1, 0, -1, 0};
+				
 				while (q.Count > 0)
 				{
 					int[] curr = q.Dequeue();
 					int currx = curr[0];
 					int currz = curr[1];
-					if (currx == 4 && currz == 0)
+					if (currx == 4 && currz == 0)//home base
 					{
-						return false;
+						return false;//meaning enemies can still reach home base when tower is built on clicked cell
 					}
 					for (int i = 0; i < direction.Length - 1; i++)
 					{
@@ -181,6 +194,7 @@ namespace Assets.Code.Menus
 				{
 					float ex = enemy.transform.position.x;
 					float ez = enemy.transform.position.z;
+					//if there's an enemy within the range
 					if (ex < x + 2.5 && ex > x - 2.5 && ez < z + 2.5 && ez > z - 2.5)
 					{
 						return true;

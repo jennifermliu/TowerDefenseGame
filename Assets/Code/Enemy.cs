@@ -10,28 +10,24 @@ using UnityEngine.Networking;
 
 public class Enemy : MonoBehaviour
 {
-	//public GameObject ENEMY;
 	private	Vector3 pos;
 	private Vector3 Basepos;
-	//public GameObject _enemy;
 	public double enemyHealth;
 	private float multiplier;
-
 
 	public double GetHealth()
 	{
 		return enemyHealth;
 	} 
+	
 	public void SetHealth(int val)
 	{
 		enemyHealth = enemyHealth - val;
 	}
 	
-	// Use this for initialization
 	void Start () {		
 		pos = transform.position;
 		multiplier = 1f;
-
 	}
 	
 	// Update is called once per frame
@@ -41,6 +37,7 @@ public class Enemy : MonoBehaviour
 			return;
 		}
 		
+		//find direction that this enemy should move to
 		GameObject _Base = GameObject.FindWithTag("Base");
 		Basepos = _Base.transform.position;
 		GameObject[] cubes = GameObject.FindGameObjectsWithTag("Cube");
@@ -71,10 +68,9 @@ public class Enemy : MonoBehaviour
 		Vector3 dir = calculateDirection(pos, Basepos, towers);
 		
 		
+		//slow down speed of enemies if found freezing towers nearby
 		GameObject[] freezetowers= GameObject.FindGameObjectsWithTag("Freeze");
-		//bool freezed = false;
-		//bool[][] hasfreeze=findfreeze(freezetowers);
-		double freezecount = 0;
+		double freezecount = 0;//number of freeze towers nearby
 		foreach (GameObject tower in freezetowers)
 		{
 			Vector3 towerpos = tower.transform.position;
@@ -83,36 +79,36 @@ public class Enemy : MonoBehaviour
 				freezecount = freezecount + 1;
 			}
 		}
-		enemyHealth = enemyHealth - freezecount * 0.1;
-		//Debug.Log(enemyHealth);
-		double casted = Math.Pow(0.8, freezecount);
+		enemyHealth = enemyHealth - freezecount * 0.1;//decrease enemy health per freeeze tower
+		double casted = Math.Pow(0.8, freezecount);//multiply speed by 0.8 for every freeze tower
 		multiplier = (float) casted;
-		//Debug.Log(multiplier);
-		if (GetComponent<Renderer>().material.color == Color.cyan)
+		float difficulty = multiplier*(EnemyManager.WaveNumber + 5);
+		if (GetComponent<Renderer>().material.color == Color.cyan)//fast enemy
 		{
-			pos = pos + Vector3.Normalize(dir) * 0.04f*multiplier*(EnemyManager.WaveNumber+5);
+			difficulty = difficulty * 0.04f;
 		}
-		else if (GetComponent<Renderer>().material.color == Color.green)
+		else if (GetComponent<Renderer>().material.color == Color.green)//strong enemy
 		{
-			pos = pos + Vector3.Normalize(dir) * 0.02f*multiplier*(EnemyManager.WaveNumber+5);
+			difficulty = difficulty * 0.02f;
 		}
-		else
+		else //regular enemy
 		{
-			pos = pos + Vector3.Normalize(dir) * 0.03f*multiplier*(EnemyManager.WaveNumber+5);
+			difficulty = difficulty * 0.03f;
 		}
+		pos = pos + Vector3.Normalize(dir) * difficulty;
 		
+		
+		//if enemy reaches home base
 		if (pos.x<=Basepos.x+2.5 && pos.x>=Basepos.x-2.5 && pos.z<=Basepos.z+2.5 && pos.z>=Basepos.z-2.5)
 		{	
 			gameObject.SetActive(false);
 			if (Base.hit > 0)
 			{
-				//fast			
-				if (GetComponent<Renderer>().material.color == Color.cyan)
+				if (GetComponent<Renderer>().material.color == Color.cyan)//fast		
 				{
 					Base.hit = Base.hit - 5;
 				}
-				//strong
-				else if (GetComponent<Renderer>().material.color == Color.green)
+				else if (GetComponent<Renderer>().material.color == Color.green)//strong
 				{
 					Base.hit = Base.hit - 15;
 				}
@@ -120,40 +116,20 @@ public class Enemy : MonoBehaviour
 				{
 					Base.hit = Base.hit - 10;
 				}
-
 			}
 		}
 		else
 		{
 			transform.position = pos;
 		}
+		
+		//if enemy is dead set it unactive
 		if (enemyHealth <= 0)
 		{
 			gameObject.SetActive(false);
 		}
-		
-
 	}
 	
-	/*
-	bool[][] findfreeze(GameObject[] freezetowers)
-	{
-		bool[][] hasfreeze=new bool[5][];
-		for (int i = 0; i < 5; i++)
-		{
-			hasfreeze[i]=new bool[5];
-		}
-		foreach (GameObject tower in freezetowers)
-		{
-			float x = tower.transform.position.x;
-			float z = tower.transform.position.z;
-			int xind = (int) (x+0.5) / 5;
-			int zind = (int) (z+0.5) / 5;
-			hasfreeze[xind][zind] = true;
-		}
-		return hasfreeze;
-	}
-	*/
 	
 	Vector3 calculateDirection(Vector3 startPos, Vector3 endPos, List<GameObject> towers)
 	{
@@ -223,8 +199,6 @@ public class Enemy : MonoBehaviour
 		}
 		return new Vector3(0,0,0);
 	}
-
-
 }
 
 

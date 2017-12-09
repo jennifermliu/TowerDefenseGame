@@ -9,10 +9,8 @@ public class Grid : MonoBehaviour {
 	public GameObject plane;
 	public int width = 5;
 	public int height = 5;
-
 	private GameObject[,] grid = new GameObject[5,5];
 	private int label = 1;
-	
 	
 	void Start()
 	{
@@ -37,11 +35,5 @@ public class Grid : MonoBehaviour {
 				grid[x, z] = gridPlane;
 			}
 		}
-	}
-
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

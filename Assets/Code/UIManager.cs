@@ -37,8 +37,6 @@ namespace Assets.Code.Menus
             _upgrade = null;
         }
 
-
-
         private abstract class Menu
         {
             protected GameObject Go;
@@ -61,5 +59,4 @@ namespace Assets.Code.Menus
             }
         }
     }
-
 }

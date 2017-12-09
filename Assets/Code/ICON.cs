@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ICON : MonoBehaviour
 {
-	
 	public Object icon;
+	
 	// Use this for initialization
 	void Start () {
 		icon = Resources.Load("ICON");
@@ -22,27 +22,20 @@ public class ICON : MonoBehaviour
 				{
 					_text.text = "Wave: " + i;
 				}
-
 				if (i == 1)
 				{
 					if (_text.name == "first")
 					{
 						_text.text = "5 normal";
 					}
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
-					
 				}
-				
 				else if (i == 2)
 				{
 					if (_text.name == "first")
 					{
 						_text.text = "10 normal";
 					}
-					xpos = xpos+35;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 3)
 				{
 					if (_text.name == "first")
@@ -57,10 +50,7 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "5 normal";
 					}
-					xpos = xpos+40;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 4)
 				{
 					if (_text.name == "first")
@@ -75,10 +65,7 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "5 normal";
 					}
-					xpos = xpos+47;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 5)
 				{
 					if (_text.name == "first")
@@ -93,10 +80,7 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "10 normal";
 					}
-					xpos = xpos+43;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 6)
 				{
 					if (_text.name == "first")
@@ -111,10 +95,7 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "10 fast";
 					}
-					xpos = xpos+58;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 7)
 				{
 					if (_text.name == "first")
@@ -129,10 +110,7 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "5 normal";
 					}
-					xpos = xpos+58;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 8)
 				{
 					if (_text.name == "first")
@@ -147,10 +125,7 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "10 normal";
 					}
-					xpos = xpos+43;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
-				
 				else if (i == 9)
 				{
 					if (_text.name == "first")
@@ -165,87 +140,64 @@ public class ICON : MonoBehaviour
 					{
 						_text.text = "10 fast";
 					}
-					xpos = xpos+58;
-					newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 				}
 			}
-			
+			float mul = 5;
 			if (i == 1)
 			{
-
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
-					
 			}
-				
 			else if (i == 2)
 			{
-
-				xpos = xpos+35;
+				xpos = xpos+35*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 3)
 			{
-
-				xpos = xpos+40;
+				xpos = xpos+40*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 4)
 			{
-
-				xpos = xpos+47;
+				xpos = xpos+47*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 5)
 			{
-
-				xpos = xpos+43;
+				xpos = xpos+43*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 6)
 			{
-
-				xpos = xpos+58;
+				xpos = xpos+58*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 7)
 			{
-
-				xpos = xpos+58;
+				xpos = xpos+58*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 8)
 			{
-
-				xpos = xpos+43;
+				xpos = xpos+43*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-				
 			else if (i == 9)
 			{
-
-				xpos = xpos+58;
+				xpos = xpos+58*mul;
 				newpos=new Vector3(xpos, newicon.transform.position.y, newicon.transform.position.z);
 			}
-			//Vector3 newpos=new Vector3(55+(i-1)*120, newicon.transform.position.y, newicon.transform.position.z);
 			newicon.transform.position = newpos;
 		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
 		if (Base.hit <= 0)
 		{
 			return;
 		}
-		
-
 		GameObject[] allicons = GameObject.FindGameObjectsWithTag("ICON");
 		foreach (var icon in allicons)
 		{

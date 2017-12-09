@@ -13,8 +13,6 @@ public class ShocktowerBuild : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		GetComponent<Renderer>().material.color = Color.black;
-
-		
 	}
 	
 	// Update is called once per frame
@@ -24,9 +22,7 @@ public class ShocktowerBuild : MonoBehaviour
 		{
 			return;
 		}
-
 		if ((Time.time - LastShock) < ShockTime) return;
-		
 		float xpos = transform.position.x;
 		float zpos = transform.position.z;
 		Enemy[] enemies = FindObjectsOfType(typeof(Enemy)) as Enemy[];
@@ -44,32 +40,21 @@ public class ShocktowerBuild : MonoBehaviour
 					{
 						target1 = e;
 						dist = currdist;
-
 					}
 				}
 			}
 		}
-
-		
-		
 		if (dist == float.MaxValue)
 		{
 			return;
 		}
-		//Debug.Log(target1.transform.position);
 		target1.enemyHealth = target1.enemyHealth*0.5;
-
-		//ColorHold(target1);
 		StartCoroutine(ColorHold(target1));
 		var temp1 = target1;
 		target1 = null;
-	
-		
-		
 		Enemy target2=null;
 		dist = float.MaxValue;
 		Vector3 pos1 = temp1.transform.position;
-
 		if (target2 == null)
 		{
 			foreach (Enemy e in enemies)
@@ -90,19 +75,14 @@ public class ShocktowerBuild : MonoBehaviour
 				}
 			}
 		}
-
 		if (dist == float.MaxValue)
 		{
 			return;
 		}
 		target2.enemyHealth = target2.enemyHealth*0.5;
-		
 		StartCoroutine(ColorHold(target2));
 		var temp2 = target2;
 		target2 = null;
-		
-		
-		
 		Enemy target3=null;
 		dist = float.MaxValue;
 		Vector3 pos2 = temp2.transform.position;
@@ -130,7 +110,6 @@ public class ShocktowerBuild : MonoBehaviour
 		target3.enemyHealth = target3.enemyHealth*0.5;
 		StartCoroutine(ColorHold(target3));
 		target3 = null;
-		
 		LastShock = Time.time;
 	}
 
@@ -143,9 +122,5 @@ public class ShocktowerBuild : MonoBehaviour
 		yield return new WaitForSeconds(1);
 		target.GetComponent<Renderer>().material.color = originalcolor;
 	}
-
-
-			
-		
 
 }
